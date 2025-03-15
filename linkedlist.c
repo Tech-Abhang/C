@@ -107,14 +107,14 @@ void lastDelete() {
 
 //delete in the middle
 void middleDelete(int pos){
-    struct Node* temp = head->next;
+    struct Node* temp = head;
     struct Node* sectemp = head;
 
     int ctr = 1;
     if(pos>0){
         while(ctr<pos){
+            sectemp = temp;
             temp = temp->next;
-            sectemp = sectemp->next;
             ctr++;
         }
         sectemp->next = temp->next;
