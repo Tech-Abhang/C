@@ -48,13 +48,13 @@ void addLast(const char* data) {
 //add in the middle
 void addMiddle(const char* data, int pos){
     struct Node* newNode = createNode(data);
-    struct Node* lastNode = head -> next;
+    struct Node* lastNode = head;
     struct Node* secLastNode = head;
 
     int ctr = 1 ;
     if(pos>0){
         while(ctr<pos){
-            secLastNode = secLastNode->next;
+            secLastNode = lastNode;
             lastNode = lastNode->next;
             ctr++;
         }
@@ -117,7 +117,7 @@ void middleDelete(int pos){
             sectemp = sectemp->next;
             ctr++;
         }
-        secTemp->next = temp->next;
+        sectemp->next = temp->next;
         free(temp->data);
         free(temp);
     }
