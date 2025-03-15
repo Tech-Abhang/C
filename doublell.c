@@ -55,7 +55,7 @@ void addMiddle(const char* data, int pos) {
     struct Node* newNode = createNode(data);
     struct Node* temp = head;
     int ctr = 1;
-    while (temp != NULL && ctr < pos) {
+    while (temp != NULL && ctr < pos-1) {
         temp = temp->next;
         ctr++;
     }
@@ -171,7 +171,7 @@ int main() {
     addLast("abhang");
     printList();
 
-    middleDelete(2);
+    middleDelete(3);
     printList();
 
     // startDelete();
