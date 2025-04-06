@@ -5,8 +5,9 @@
 struct Node {
     char* data;
     struct Node* next;
-} 
-struct *head = NULL; 
+};
+
+struct Node* head = NULL; 
 
 struct Node* createNode(const char* data) {
     struct Node* newNode = malloc(sizeof(struct Node));
@@ -33,6 +34,26 @@ void addFirst(const char* data) {
     newNode->next = head;
     head = newNode;
     last->next = head;  // Last node points to new head
+}
+
+void addMiddle(const char* data , const int ptr){
+    struct Node* newNode = createNode(data);
+    struct Node* temp = head;
+    struct Node* sectemp = head;
+
+    if(head == NULL){
+        head = newNode;
+        newNode->next = head;
+        return;
+    }
+    int ctr = 1;
+    while(ctr<ptr){
+        sectemp = temp;
+        temp = temp->next;
+        ctr++;
+    }
+    sectemp->next = newNode;
+    newNode->next = temp;
 }
 
 // Add last
@@ -73,8 +94,6 @@ void startDelete() {
 
     head = head->next;
     last->next = head;  // Update last node to point to new head
-    free(temp->data);
-    free(temp);
 }
 
 // Delete last
@@ -139,6 +158,11 @@ int main() {
     addLast("second");
     addLast("third");
     printList();
+
+    addMiddle("middle", 2);
+    printf("After adding middle node:\n");
+    printList();
+
     
     startDelete();
     printf("After deleting first node:\n");
