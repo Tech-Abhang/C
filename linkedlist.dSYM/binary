@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Maximum size of the array for binary tree
+#define MAX_SIZE 100
+
+// Array to store the binary tree
+// For a node at index i:
+// - Left child is at index 2*i + 1
+// - Right child is at index 2*i + 2
+// - Parent is at index (i-1)/2
+char* tree[MAX_SIZE];
+
+// Initialize the tree
+void initializeTree() {
+    for (int i = 0; i < MAX_SIZE; i++) {
+        tree[i] = NULL;
+    }
+}
+
+// Insert a value into the tree
+void insert(char* value, int index) {
+    if (index < MAX_SIZE) {
+        tree[index] = value;
+    } else {
+        printf("Tree is full\n");
+    }
+}
+
+// Check if a node is empty
+int isEmpty(int index) {
+    return (index >= MAX_SIZE || tree[index] == NULL);
+}
+
+// Preorder traversal: Root -> Left -> Right
+void preorderTraversal(int index) {
+    if (!isEmpty(index)) {
+        printf("%s ", tree[index]);     // Visit the root
+        preorderTraversal(2 * index + 1); // Visit left subtree
+        preorderTraversal(2 * index + 2); // Visit right subtree
+    }
+}
+
+// Inorder traversal: Left -> Root -> Right
+void inorderTraversal(int index) {
+    if (!isEmpty(index)) {
+        inorderTraversal(2 * index + 1);  // Visit left subtree
+        printf("%s ", tree[index]);      // Visit the root
+        inorderTraversal(2 * index + 2);  // Visit right subtree
+    }
+}
+
+// Postorder traversal: Left -> Right -> Root
+void postorderTraversal(int index) {
+    if (!isEmpty(index)) {
+        postorderTraversal(2 * index + 1); // Visit left subtree
+        postorderTraversal(2 * index + 2); // Visit right subtree
+        printf("%s ", tree[index]);       // Visit the root
+    }
+}
+
+int main() {
+    initializeTree();
+    
+    // Creating a sample binary tree
+    /*
+           A
+         /   \
+        B     C
+       / \   / \
+      D   E F   G
+    */
+    
+    insert("A", 0);
+    insert("B", 1);
+    insert("C", 2);
+    insert("D", 3);
+    insert("E", 4);
+    insert("F", 5);
+    insert("G", 6);
+    
+    // Perform traversals
+    printf("Preorder traversal: ");
+    preorderTraversal(0);
+    printf("\n");
+    
+    printf("Inorder traversal: ");
+    inorderTraversal(0);
+    printf("\n");
+    
+    printf("Postorder traversal: ");
+    postorderTraversal(0);
+    printf("\n");
+    
+    return 0;
+}
