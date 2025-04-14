@@ -16,29 +16,24 @@ int enqueue(int x){
         front = rear = 0;
         queue[rear] = x;
     }
-    else if(rear == N-1 && front != 0){
-        rear = 0;
-        queue[rear] = x;
-    }
     else{
-        rear++;
+        rear = (rear + 1) % N;
         queue[rear] = x;
     }
 }
 
 //delete 
 int dequeue(){
+    //empty queue
     if(front == -1 && rear == -1){
         printf("Queue is empty\n");
     }
+    //only one element in queue
     else if(front == rear){
         front = rear = -1 ; 
     }
-    else if(rear == N-1){
-        front = 0 ;
-    }
     else{
-        front ++ ;
+        front = (front + 1) % N;
     }
 }
 
