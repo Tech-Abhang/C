@@ -44,9 +44,11 @@ void display(){
             printf("%d\n",queue[i]);
         }
     }else{
+        //from front to end 
         for(int i = front ; i<N ; i++){
             printf("%d\n",queue[i]);
         }
+        //from start to rear
         for(int i=0 ; i<rear ; i++){
             printf("%d\n",queue[i]);
         }
